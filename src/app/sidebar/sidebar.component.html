@@ -1,0 +1,46 @@
+<mat-toolbar class="mat-elevation-z8">
+  <button
+    mat-icon-button
+    *ngIf="sidenav.mode === 'over'"
+    (click)="sidenav.toggle()"
+  >
+    <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
+    <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
+  </button>
+  Responsive side navigation
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
+    <img
+      class="avatar mat-elevation-z8"
+      src="data:image/jpeg;base64,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"
+    />
+
+    <h4 class="name">Chill Music</h4>
+
+    <mat-divider></mat-divider>
+
+    <button mat-button class="menu-button" routerLink="/lofi-girl">
+      <span>LOFI GIRL</span>
+    </button>
+    <button mat-button class="menu-button" routerLink="/anime-vibe">
+      <span>ANIME VIBE</span>
+    </button>
+    <button mat-button class="menu-button" routerLink="/chillhop">
+      <span>CHILLHOP MUSIC</span>
+    </button>
+
+    <mat-divider></mat-divider>
+
+    <button mat-button class="menu-button" routerLink="/help">
+      <mat-icon>help</mat-icon>
+      <span>Help</span>
+    </button>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="content mat-elevation-z8">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
