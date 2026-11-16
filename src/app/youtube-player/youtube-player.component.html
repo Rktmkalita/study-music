@@ -1,0 +1,12 @@
+<div class="player-shell" [class.background-mode]="backgroundMode">
+  <div class="player-frame" [id]="playerElementId"></div>
+  <div class="player-controls">
+    <button class="background-skip" *ngIf="backgroundMode" mat-icon-button (click)="previous()" aria-label="Previous song"><mat-icon>skip_previous</mat-icon></button>
+    <button class="play-pause" *ngIf="backgroundMode" mat-icon-button (click)="togglePlayPause()" [attr.aria-label]="isPlaying ? 'Pause' : 'Play'"><mat-icon>{{ isPlaying ? 'pause' : 'play_arrow' }}</mat-icon></button>
+    <button class="background-skip" *ngIf="backgroundMode" mat-icon-button (click)="next()" aria-label="Next song"><mat-icon>skip_next</mat-icon></button>
+    <button class="secondary-control" *ngIf="!backgroundMode" mat-stroked-button (click)="previous()">Previous</button>
+    <span *ngIf="videoIds.length">{{ currentTitle }} · {{ currentIndex + 1 }}/{{ videoIds.length }}</span>
+    <button class="secondary-control" *ngIf="!backgroundMode" mat-stroked-button (click)="next()">Next</button>
+  </div>
+  <p class="player-status" *ngIf="statusMessage">{{ statusMessage }}</p>
+</div>

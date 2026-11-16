@@ -1,0 +1,16 @@
+<section class="dashboard">
+  <div class="visual-background"><app-youtube-player [videoIds]="station.tracks" [trackTitles]="station.titles" [backgroundMode]="true" (playingChange)="setPlaying($event)"></app-youtube-player></div>
+  <div class="dashboard-scrim"></div>
+  <div class="video-chrome-mask top-mask"></div><div class="video-chrome-mask bottom-mask"></div>
+  <div class="dashboard-content">
+    <div class="welcome-row">
+      <div><p class="eyebrow">WELCOME TO YOUR FOCUS ROOM</p><h1>Find your flow.</h1><p class="intro">Anime-inspired beats for studying, coding, reading, and quiet moments.</p></div>
+      <div class="time-card"><span>YOUR SPACE</span><strong>STAY AWHILE</strong><small>no account · no noise</small></div>
+    </div>
+    <div class="station-grid" aria-label="Stations">
+      <button class="station-card" *ngFor="let item of stations; let i = index" [class.active]="i === activeStation" [class]="item.accent" (click)="selectStation(i)"><span class="station-icon" aria-hidden="true">{{ item.icon }}</span><span class="station-copy"><span class="station-label">STATION 0{{ i + 1 }}</span><strong>{{ item.name }}</strong><small>{{ item.subtitle }}</small></span></button>
+    </div>
+    <aside class="queue-panel"><p class="eyebrow">UP NEXT</p><h2>Tonight's queue</h2><button class="queue-item" *ngFor="let title of station.titles; let i = index" (click)="playTrack(i)"><span>0{{ i + 1 }}</span><div><strong>{{ title }}</strong><small>{{ station.name }} radio</small></div></button><app-ambient-sounds></app-ambient-sounds></aside>
+    <div class="focus-controls" aria-label="Playback controls"><button mat-icon-button (click)="previousTrack()" aria-label="Previous song"><mat-icon>skip_previous</mat-icon></button><button class="focus-play" mat-icon-button (click)="togglePlayback()" aria-label="Play or pause"><mat-icon>{{ isPlaying ? 'pause' : 'play_arrow' }}</mat-icon></button><button mat-icon-button (click)="nextTrack()" aria-label="Next song"><mat-icon>skip_next</mat-icon></button></div>
+  </div>
+</section>

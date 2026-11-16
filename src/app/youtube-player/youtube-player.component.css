@@ -1,0 +1,18 @@
+.player-shell { max-width: 900px; margin: 0 auto; }
+.player-frame { width: 100%; min-height: 390px; background: #171226; border: 1px solid rgba(255, 255, 255, .12); border-radius: 22px; overflow: hidden; box-shadow: 0 24px 60px rgba(34, 18, 55, .22); }
+.player-controls { display: flex; align-items: center; justify-content: center; gap: 24px; padding: 18px 0 4px; color: #5d526e; }
+.player-controls button { border-color: rgba(162, 75, 145, .4); }
+.player-controls span { min-width: 92px; text-align: center; font-size: .9rem; }
+.player-status { margin: 8px auto 0; max-width: 620px; color: #8a4f7f; text-align: center; font-size: .9rem; }
+.background-mode { position: absolute; inset: 0; max-width: none; margin: 0; z-index: 3; pointer-events: none; }
+.background-mode .player-frame { position: absolute; top: -14%; right: -12%; bottom: -14%; left: -12%; z-index: -1; width: auto; height: auto; min-height: 0; border: 0; border-radius: 0; opacity: .72; filter: saturate(.72) brightness(.52); }
+ .background-mode .player-frame { pointer-events: none; }
+::ng-deep .background-mode .player-frame iframe { width: 100% !important; height: 100% !important; }
+.background-mode .player-controls { display: none !important; }
+.background-mode .player-controls button { color: white; border-color: rgba(255,255,255,.45); }
+.background-mode .player-status { display: block; position: absolute; left: 50%; bottom: 8px; z-index: 4; transform: translateX(-50%); color: #ffe1f5; pointer-events: none; }
+
+@media (max-width: 600px) {
+  .player-frame { min-height: 220px; border-radius: 16px; }
+  .player-controls { gap: 10px; justify-content: space-between; }
+}

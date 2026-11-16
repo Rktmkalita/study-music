@@ -1,1 +1,2 @@
-<app-sidebar></app-sidebar>
+<app-sidebar *ngIf="showNavigation"></app-sidebar>
+<router-outlet *ngIf="!showNavigation"></router-outlet>

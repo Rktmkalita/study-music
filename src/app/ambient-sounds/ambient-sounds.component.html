@@ -1,0 +1,17 @@
+<div class="ambient-box">
+  <p class="eyebrow">AMBIENT LAYER</p>
+  <strong>Set the room tone</strong>
+  <small>Generated locally in your browser</small>
+  <div class="ambient-actions">
+    <button mat-stroked-button [class.selected]="rainActive" (click)="toggle('rain')">Rain</button>
+    <button mat-stroked-button [class.selected]="noiseActive" (click)="toggle('noise')">Soft noise</button>
+  </div>
+  <label class="volume-control" [class.visible]="rainActive">
+    Rain volume
+    <input type="range" min="0" max="0.5" step="0.01" [value]="rainVolume" (input)="setVolume('rain', +$any($event.target).value)">
+  </label>
+  <label class="volume-control" [class.visible]="noiseActive">
+    Soft noise volume
+    <input type="range" min="0" max="0.5" step="0.01" [value]="noiseVolume" (input)="setVolume('noise', +$any($event.target).value)">
+  </label>
+</div>

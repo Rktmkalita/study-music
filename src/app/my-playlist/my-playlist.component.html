@@ -1,0 +1,25 @@
+<section class="page">
+  <p class="eyebrow">YOUR SPACE</p>
+  <h1>My playlist</h1>
+  <p class="intro">Save YouTube songs in this browser. No account or backend required.</p>
+  <div class="add-row">
+    <input [(ngModel)]="link" placeholder="Paste a YouTube video link" (keyup.enter)="add()">
+    <button mat-flat-button color="primary" (click)="add()">Add song</button>
+  </div>
+  <p class="message">{{ message }}</p>
+  <div class="queue-header" *ngIf="tracks.length">
+    <strong>{{ tracks.length }} {{ tracks.length === 1 ? 'song' : 'songs' }}</strong>
+    <button mat-button color="warn" (click)="clear()">Clear playlist</button>
+  </div>
+  <app-youtube-player *ngIf="playing.length" [videoIds]="playing" [trackTitles]="playingTitles"></app-youtube-player>
+  <div class="track-list">
+    <div class="track" *ngFor="let track of tracks; let i = index">
+      <span class="track-label">{{ i + 1 }}. {{ track.title }} · {{ track.id }}</span>
+      <span class="track-actions">
+        <button mat-icon-button aria-label="Move song up" [disabled]="i === 0" (click)="move(track.id, -1)"><mat-icon>arrow_upward</mat-icon></button>
+        <button mat-icon-button aria-label="Move song down" [disabled]="i === tracks.length - 1" (click)="move(track.id, 1)"><mat-icon>arrow_downward</mat-icon></button>
+        <button mat-button (click)="remove(track.id)">Remove</button>
+      </span>
+    </div>
+  </div>
+</section>

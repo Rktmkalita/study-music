@@ -1,0 +1,12 @@
+.page { max-width: 1000px; margin: 0 auto; color: #29213a; }
+.eyebrow { letter-spacing: 3px; color: #a24b91; font-size: 12px; }
+.intro { color: #6e657b; }
+.add-row { display: flex; gap: 12px; margin: 28px 0 8px; }
+.add-row input { flex: 1; padding: 14px; border: 1px solid #d9cfe0; border-radius: 8px; font-size: 15px; }
+.message { min-height: 20px; color: #a24b91; }
+.queue-header { display: flex; justify-content: space-between; align-items: center; margin: 24px 0 8px; color: #6e657b; }
+.track-list { margin-top: 20px; }
+.track { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 12px 4px; border-bottom: 1px solid #eee6f0; }
+.track-label { overflow-wrap: anywhere; }
+.track-actions { display: flex; align-items: center; flex-shrink: 0; }
+@media (max-width: 650px) { .add-row, .track, .queue-header { align-items: stretch; flex-direction: column; }.track-actions { justify-content: flex-end; } }

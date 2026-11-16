@@ -1,5 +1,5 @@
 mat-toolbar {
-  background: #960064c4;
+  background: linear-gradient(90deg, #311b4f, #7d3d82);
   color: white;
 }
 
@@ -7,11 +7,13 @@ mat-sidenav {
   margin: 16px;
   width: 400px;
   border-right: none;
-  background: #960064c4;
+  background: linear-gradient(160deg, rgba(49, 27, 79, .9), rgba(138, 66, 132, .82));
+  backdrop-filter: blur(18px);
   color: white;
   border-radius: 10px;
   padding: 16px;
   text-align: center;
+  box-shadow: 0 20px 50px rgba(46, 22, 71, .28);
 }
 
 .content {
@@ -20,7 +22,7 @@ mat-sidenav {
   margin: 16px;
   margin-left: 32px;
 
-  padding: 16px;
+  padding: 0;
 
   overflow: auto;
 }
@@ -52,6 +54,8 @@ mat-sidenav-container {
   margin-top: 8px;
   font-weight: normal;
 }
+
+.menu-button:hover { background: rgba(255, 255, 255, .12); }
 
 /* .designation {
   margin-top: 2px;

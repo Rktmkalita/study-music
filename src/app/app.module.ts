@@ -15,9 +15,14 @@ import { LofigirlComponent } from './Channels/lofigirl/lofigirl.component';
 import { AnimevibeComponent } from './Channels/animevibe/animevibe.component';
 import { ChillhopComponent } from './Channels/chillhop/chillhop.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { FormsModule } from '@angular/forms';
+import { YoutubePlayerComponent } from './youtube-player/youtube-player.component';
+import { MyPlaylistComponent } from './my-playlist/my-playlist.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { AmbientSoundsComponent } from './ambient-sounds/ambient-sounds.component';
 
 @NgModule({
-  declarations: [AppComponent, SidebarComponent, LofigirlComponent, AnimevibeComponent, ChillhopComponent, NotFoundComponent],
+  declarations: [AppComponent, SidebarComponent, LofigirlComponent, AnimevibeComponent, ChillhopComponent, NotFoundComponent, YoutubePlayerComponent, MyPlaylistComponent, DashboardComponent, AmbientSoundsComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -27,6 +32,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     MatButtonModule,
     MatIconModule,
     MatDividerModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
