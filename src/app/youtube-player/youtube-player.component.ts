@@ -23,6 +23,7 @@ export class YoutubePlayerComponent implements AfterViewInit, OnChanges, OnDestr
   private player: any;
   private apiReady = false;
   private failedVideoIds = new Set<string>();
+  private soundUnlocked = false;
 
   ngAfterViewInit(): void {
     this.currentIndex = this.startIndex;
@@ -67,6 +68,14 @@ export class YoutubePlayerComponent implements AfterViewInit, OnChanges, OnDestr
     }
   }
 
+  @HostListener('document:pointerdown')
+  unlockSound(): void {
+    if (this.soundUnlocked || !this.player) return;
+    this.soundUnlocked = true;
+    this.player.unMute();
+    this.player.setVolume(100);
+  }
+
   selectTrack(index: number): void {
     if (!this.player || !this.videoIds.length) return;
     this.currentIndex = Math.max(0, Math.min(index, this.videoIds.length - 1));
@@ -87,7 +96,7 @@ export class YoutubePlayerComponent implements AfterViewInit, OnChanges, OnDestr
         this.playingChange.emit(this.isPlaying);
         if (event.data === youtube.PlayerState.PLAYING) this.disableCaptions(event.target);
         if (event.data === youtube.PlayerState.ENDED) this.next();
-      }, onReady: (event: any) => { this.disableCaptions(event.target); event.target.playVideo(); }, onError: (event: any) => this.handlePlayerError(event.data) },
+      }, onReady: (event: any) => { this.disableCaptions(event.target); event.target.mute(); event.target.playVideo(); }, onError: (event: any) => this.handlePlayerError(event.data) },
     });
   }
 
