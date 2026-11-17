@@ -10,6 +10,8 @@ export class DashboardComponent {
   @ViewChild(YoutubePlayerComponent) player?: YoutubePlayerComponent;
   activeStation = 0;
   isPlaying = false;
+  currentTrackIndex = 0;
+  volume = 100;
   startedFromWelcome = false;
   showAddLink = false;
   favoriteLink = '';
@@ -28,6 +30,8 @@ export class DashboardComponent {
   previousTrack(): void { this.player?.previous(); }
   nextTrack(): void { this.player?.next(); }
   setPlaying(value: boolean): void { this.isPlaying = value; }
+  setTrack(index: number): void { this.currentTrackIndex = index; }
+  setVolume(value: string): void { this.volume = Number(value); this.player?.setVolume(this.volume); }
   refreshFavorites(): void { const saved = this.library.getTracks().filter(track => track.kind !== 'playlist'); const favs = this.stations[3]; favs.tracks = saved.map(track => track.id); favs.titles = saved.map(track => track.title || 'Saved YouTube track'); }
   openAddLink(): void { this.favoriteMessage = ''; this.favoriteLink = ''; this.showAddLink = true; }
   closeAddLink(): void { this.showAddLink = false; }

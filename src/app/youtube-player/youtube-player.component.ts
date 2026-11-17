@@ -21,6 +21,7 @@ export class YoutubePlayerComponent implements AfterViewInit, OnChanges, OnDestr
   statusMessage = '';
   isPlaying = false;
   @Output() playingChange = new EventEmitter<boolean>();
+  @Output() trackChange = new EventEmitter<number>();
   readonly playerElementId = `youtube-player-${YoutubePlayerComponent.instanceCount++}`;
   private player: any;
   private apiReady = false;
@@ -63,6 +64,8 @@ export class YoutubePlayerComponent implements AfterViewInit, OnChanges, OnDestr
     else this.player.playVideo();
   }
 
+  setVolume(value: number): void { if (this.player) this.player.setVolume(Math.max(0, Math.min(100, value))); }
+
   @HostListener('window:resize')
   onResize(): void {
     if (this.backgroundMode && this.player && typeof this.player.setSize === 'function') {
@@ -81,6 +84,7 @@ export class YoutubePlayerComponent implements AfterViewInit, OnChanges, OnDestr
   selectTrack(index: number): void {
     if (!this.player || !this.videoIds.length) return;
     this.currentIndex = Math.max(0, Math.min(index, this.videoIds.length - 1));
+    this.trackChange.emit(this.currentIndex);
     this.failedVideoIds.clear();
     this.loadCurrent();
   }
@@ -105,6 +109,7 @@ export class YoutubePlayerComponent implements AfterViewInit, OnChanges, OnDestr
   private loadCurrent(): void {
     this.statusMessage = '';
     this.disableCaptions(this.player);
+    this.trackChange.emit(this.currentIndex);
     this.player.loadVideoById({ videoId: this.videoIds[this.currentIndex], startSeconds: this.startSeconds });
   }
 

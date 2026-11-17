@@ -42,10 +42,15 @@
 .station-card .station-label, .station-card strong, .station-card small { display: block; }
 .queue-item { width: 100%; border: 0; color: white; background: transparent; text-align: left; cursor: pointer; }
 .queue-item:hover { background: rgba(255,255,255,.08); }
+.queue-item.current-track { background: linear-gradient(90deg, rgba(220,129,190,.24), rgba(255,255,255,.07)); box-shadow: inset 3px 0 #f0b7e5; }
+.queue-item.current-track strong { color: #ffd8f2; }
 .queue-list { max-height: 280px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: rgba(240,169,217,.7) rgba(255,255,255,.08); padding-right: 4px; }
 .focus-controls { position: fixed; left: 50%; bottom: 22px; z-index: 60; display: flex; align-items: center; gap: 12px; padding: 10px 16px; transform: translateX(-50%); border: 1px solid rgba(255,255,255,.38); border-radius: 999px; background: rgba(20,15,30,.9); box-shadow: 0 8px 24px rgba(0,0,0,.35); pointer-events: auto; }
 .focus-controls button { color: white; }
 .focus-controls .focus-play { width: 48px; height: 48px; background: rgba(255,255,255,.14); }
+.focus-control-stack { position: fixed; left: 50%; bottom: 12px; z-index: 60; display: flex; flex-direction: column; align-items: center; gap: 5px; transform: translateX(-50%); pointer-events: auto; }
+.focus-control-stack .focus-controls { position: static; transform: none; }
+.master-volume { display: flex; align-items: center; gap: 6px; width: 150px; padding: 4px 9px; border: 1px solid rgba(255,255,255,.22); border-radius: 999px; color: rgba(255,255,255,.8); background: rgba(20,15,30,.7); backdrop-filter: blur(12px); }.master-volume mat-icon { font-size: 16px; width: 16px; height: 16px; }.master-volume input { width: 100%; height: 4px; accent-color: #d88bc4; cursor: pointer; }
 @media (max-width: 600px) { .focus-controls { bottom: 14px; transform: translateX(-50%) scale(.88); } }
 @media (max-width: 700px) { .queue-panel { top: 150px; right: 12px; width: min(300px, calc(100vw - 70px)); }.station-grid { left: -8px; top: 48%; }.station-card, .station-card.active { width: 52px; height: 52px; }.station-card:hover, .station-card:focus-visible { width: 190px; transform: translateX(8px); } }
 @media (max-width: 1100px) { .time-card { display: none; }.queue-panel { top: clamp(92px, 14vh, 150px); right: 14px; width: min(300px, 30vw); }.welcome-row { padding-right: 32vw; } }
