@@ -20,17 +20,17 @@ const routes: Routes = [
   },
   {
     path: 'lofi-girl',
-    component: LofigirlComponent,
+    component: DashboardComponent,
   },
   {
     path: 'anime-vibe',
-    component: AnimevibeComponent,
+    component: DashboardComponent,
   },
   {
     path: 'chillhop',
-    component: ChillhopComponent,
+    component: DashboardComponent,
   },
-  { path: 'my-playlist', component: MyPlaylistComponent },
+  { path: 'my-playlist', component: DashboardComponent },
   { path: 'about', component: NotFoundComponent },
   {
     path: '**',

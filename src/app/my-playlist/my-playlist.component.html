@@ -3,7 +3,7 @@
   <h1>My playlist</h1>
   <p class="intro">Save YouTube songs in this browser. No account or backend required.</p>
   <div class="add-row">
-    <input [(ngModel)]="link" placeholder="Paste a YouTube video link" (keyup.enter)="add()">
+    <input [(ngModel)]="link" placeholder="Paste a YouTube song or playlist link" (keyup.enter)="add()">
     <button mat-flat-button color="primary" (click)="add()">Add song</button>
   </div>
   <p class="message">{{ message }}</p>
@@ -16,6 +16,7 @@
     <div class="track" *ngFor="let track of tracks; let i = index">
       <span class="track-label">{{ i + 1 }}. {{ track.title }} · {{ track.id }}</span>
       <span class="track-actions">
+        <a *ngIf="track.kind === 'playlist'" mat-button [href]="track.url" target="_blank" rel="noopener">Open playlist</a>
         <button mat-icon-button aria-label="Move song up" [disabled]="i === 0" (click)="move(track.id, -1)"><mat-icon>arrow_upward</mat-icon></button>
         <button mat-icon-button aria-label="Move song down" [disabled]="i === tracks.length - 1" (click)="move(track.id, 1)"><mat-icon>arrow_downward</mat-icon></button>
         <button mat-button (click)="remove(track.id)">Remove</button>

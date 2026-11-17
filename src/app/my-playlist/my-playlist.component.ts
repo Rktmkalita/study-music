@@ -12,10 +12,11 @@ export class MyPlaylistComponent {
   constructor(private library: MusicLibraryService) { this.refresh(); }
 
   add(): void {
-    const match = this.link.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|shorts\/|embed\/))([^?&/]+)/);
-    if (!match) { this.message = 'Paste a YouTube video link.'; return; }
-    this.library.addTrack({ id: match[1], title: 'YouTube track' });
-    this.link = ''; this.message = 'Added to your browser playlist.'; this.refresh();
+    const video = this.link.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|shorts\/|embed\/))([^?&/]+)/);
+    const playlist = this.link.match(/[?&]list=([^&]+)/);
+    if (!video && !playlist) { this.message = 'Paste a YouTube song or playlist link.'; return; }
+    this.library.addTrack(video ? { id: video[1], title: 'YouTube track', kind: 'video', url: this.link } : { id: `playlist:${playlist![1]}`, title: 'YouTube playlist', kind: 'playlist', url: this.link });
+    this.link = ''; this.message = 'Saved in this browser.'; this.refresh();
   }
 
   refresh(): void { this.tracks = this.library.getTracks(); this.playing = this.tracks.map(track => track.id); this.playingTitles = this.tracks.map(track => track.title); }

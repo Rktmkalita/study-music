@@ -1,0 +1,1 @@
+.dashboard .station-card.favorite-card::before { content: none !important; }

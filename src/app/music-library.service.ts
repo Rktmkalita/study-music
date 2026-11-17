@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-export interface SavedTrack { id: string; title: string; }
+export interface SavedTrack { id: string; title: string; kind?: 'video' | 'playlist'; url?: string; }
 
 @Injectable({ providedIn: 'root' })
 export class MusicLibraryService {
