@@ -6,3 +6,4 @@
 .volume-control input::-webkit-slider-thumb { appearance: none; width: 15px; height: 15px; border: 1px solid rgba(255,255,255,.72); border-radius: 50%; background: linear-gradient(135deg, #f1b9e1, #a45e9a); box-shadow: 0 2px 8px rgba(10, 5, 18, .35), inset 0 1px rgba(255,255,255,.65); }
 .volume-control input::-moz-range-thumb { width: 15px; height: 15px; border: 1px solid rgba(255,255,255,.72); border-radius: 50%; background: linear-gradient(135deg, #f1b9e1, #a45e9a); box-shadow: 0 2px 8px rgba(10, 5, 18, .35), inset 0 1px rgba(255,255,255,.65); }
 .volume-control:last-child { margin-bottom: 8px; }
+@media (max-width: 600px) { .ambient-box { position: static; margin-top: 10px; padding: 10px 10px 14px; }.ambient-actions { gap: 6px; margin-top: 9px; }.ambient-actions button { min-height: 32px; } }
