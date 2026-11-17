@@ -6,12 +6,13 @@ import { LofigirlComponent } from './Channels/lofigirl/lofigirl.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { MyPlaylistComponent } from './my-playlist/my-playlist.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'dashboard',
+    component: WelcomeComponent,
   },
   {
     path: 'dashboard',

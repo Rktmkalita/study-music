@@ -28,10 +28,10 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('lofi-music');
   });
 
-  it('should render the application shell', () => {
+  it('should render the immersive welcome shell', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('app-sidebar')).toBeTruthy();
+    expect(compiled.querySelector('router-outlet')).toBeTruthy();
   });
 });

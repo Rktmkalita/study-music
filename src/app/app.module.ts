@@ -20,9 +20,10 @@ import { YoutubePlayerComponent } from './youtube-player/youtube-player.componen
 import { MyPlaylistComponent } from './my-playlist/my-playlist.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AmbientSoundsComponent } from './ambient-sounds/ambient-sounds.component';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 @NgModule({
-  declarations: [AppComponent, SidebarComponent, LofigirlComponent, AnimevibeComponent, ChillhopComponent, NotFoundComponent, YoutubePlayerComponent, MyPlaylistComponent, DashboardComponent, AmbientSoundsComponent],
+  declarations: [AppComponent, SidebarComponent, LofigirlComponent, AnimevibeComponent, ChillhopComponent, NotFoundComponent, YoutubePlayerComponent, MyPlaylistComponent, DashboardComponent, AmbientSoundsComponent, WelcomeComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

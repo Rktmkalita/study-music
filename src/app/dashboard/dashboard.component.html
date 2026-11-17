@@ -1,5 +1,5 @@
 <section class="dashboard">
-  <div class="visual-background"><app-youtube-player [videoIds]="station.tracks" [trackTitles]="station.titles" [backgroundMode]="true" (playingChange)="setPlaying($event)"></app-youtube-player></div>
+  <div class="visual-background"><app-youtube-player [videoIds]="station.tracks" [trackTitles]="station.titles" [backgroundMode]="true" [userInitiated]="startedFromWelcome" (playingChange)="setPlaying($event)"></app-youtube-player></div>
   <div class="dashboard-scrim"></div>
   <div class="video-chrome-mask top-mask"></div><div class="video-chrome-mask bottom-mask"></div>
   <div class="dashboard-content">

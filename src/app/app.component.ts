@@ -12,9 +12,11 @@ export class AppComponent {
   showNavigation = true;
 
   constructor(router: Router) {
-    this.showNavigation = !router.url.startsWith('/dashboard');
+    this.showNavigation = !this.isImmersiveRoute(router.url);
     router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(event => {
-      this.showNavigation = !(event as NavigationEnd).urlAfterRedirects.startsWith('/dashboard');
+      this.showNavigation = !this.isImmersiveRoute((event as NavigationEnd).urlAfterRedirects);
     });
   }
+
+  private isImmersiveRoute(url: string): boolean { return url === '/' || url.startsWith('/dashboard'); }
 }

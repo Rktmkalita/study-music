@@ -15,6 +15,7 @@ export class YoutubePlayerComponent implements AfterViewInit, OnChanges, OnDestr
   @Input() trackTitles: string[] = [];
   @Input() backgroundMode = false;
   @Input() startIndex = 0;
+  @Input() userInitiated = false;
   currentIndex = 0;
   statusMessage = '';
   isPlaying = false;
@@ -96,7 +97,7 @@ export class YoutubePlayerComponent implements AfterViewInit, OnChanges, OnDestr
         this.playingChange.emit(this.isPlaying);
         if (event.data === youtube.PlayerState.PLAYING) this.disableCaptions(event.target);
         if (event.data === youtube.PlayerState.ENDED) this.next();
-      }, onReady: (event: any) => { this.disableCaptions(event.target); event.target.mute(); event.target.playVideo(); }, onError: (event: any) => this.handlePlayerError(event.data) },
+      }, onReady: (event: any) => { this.disableCaptions(event.target); if (!this.userInitiated) event.target.mute(); else event.target.unMute(); event.target.playVideo(); }, onError: (event: any) => this.handlePlayerError(event.data) },
     });
   }
 
