@@ -1,27 +1,60 @@
 # LofiMusic
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.6.
+LofiMusic is an anime-inspired listening space for studying, coding, reading, and quiet moments. Choose a station, play a YouTube-backed queue, add ambient rain or soft noise, and save your own tracks locally in the browser.
 
-## Development server
+## Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+- Anime Vibe, Lofi Girl, and Chillhop listening stations
+- YouTube embedded playback with play/pause, previous, next, and volume controls
+- Queue display with automatic progression through tracks
+- Ambient rain and soft-noise toggles
+- My Favs queue for saving YouTube songs in local storage
+- Responsive layout for desktop and mobile screens
 
-## Code scaffolding
+## Tech stack
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Angular 13
+- Angular Material
+- Bootstrap 5
+- YouTube IFrame Player API
 
-## Build
+## Getting started
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### Prerequisites
 
-## Running unit tests
+- Node.js and npm
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Install dependencies
 
-## Running end-to-end tests
+```bash
+npm install
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### Start the development server
 
-## Further help
+```bash
+npm start
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Open <http://localhost:4200/> in your browser. The app reloads automatically when source files change.
+
+## Available scripts
+
+| Command | Description |
+| --- | --- |
+| `npm start` | Start the local development server |
+| `npm run build` | Create a production build in `dist/` |
+| `npm run watch` | Rebuild continuously in development mode |
+| `npm test` | Run the unit tests with Karma |
+
+## Data and privacy
+
+Music is played through YouTube's official embedded player. LofiMusic does not download, extract, or host the audio. Songs added to **My Favs** are stored in the browser's `localStorage`; there is no account, backend, or cross-device synchronization.
+
+## Project structure
+
+- `src/app/dashboard` — main listening dashboard and station queues
+- `src/app/youtube-player` — reusable YouTube player controls
+- `src/app/ambient-sounds` — rain and soft-noise controls
+- `src/app/music-library.service.ts` — local saved-track storage
+- `src/app/Channels` — built-in station views
