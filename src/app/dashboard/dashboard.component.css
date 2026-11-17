@@ -74,6 +74,15 @@
 .master-volume input::-webkit-slider-thumb { appearance: none; width: 14px; height: 14px; border: 2px solid rgba(255,255,255,.8); border-radius: 50%; background: #d88bc4; box-shadow: 0 0 0 3px rgba(216,139,196,.18), 0 2px 8px rgba(0,0,0,.3); }
 .master-volume input::-moz-range-thumb { width: 12px; height: 12px; border: 2px solid rgba(255,255,255,.8); border-radius: 50%; background: #d88bc4; box-shadow: 0 0 0 3px rgba(216,139,196,.18), 0 2px 8px rgba(0,0,0,.3); }
 @media (max-width: 600px) { .station-card.active { transform: translateX(3px) scale(1.04); } .master-volume { width: 148px; } }
+.station-card.active { overflow: visible; animation: station-bubble-float 5s ease-in-out infinite; }
+.station-card.active::after { content: ''; position: absolute; left: 50%; top: 50%; width: 92px; height: 92px; z-index: 0; padding: 2px; border-radius: 50%; background: conic-gradient(from 0deg, transparent 0 32%, rgba(255,241,253,.82) 42%, rgba(230,135,207,.58) 49%, transparent 60% 100%); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; transform: translate(-50%, -50%); animation: station-ring-spin 4.5s linear infinite; pointer-events: none; filter: drop-shadow(0 0 8px rgba(236,154,218,.6)); }
+.station-card.active::after { opacity: 1; transition: opacity .25s ease; }
+.station-card.active:hover::after, .station-card.active:focus-visible::after { opacity: 0; }
+.station-card.active .station-copy, .station-card.active .station-icon { position: relative; z-index: 2; }
+@keyframes station-ring-spin { to { transform: translate(-50%, -50%) rotate(360deg); } }
+@keyframes station-hover-ring { to { transform: rotate(360deg); } }
+@keyframes station-bubble-float { 0%, 100% { transform: translateX(4px) scale(1.1) rotate(-1deg); } 50% { transform: translateX(4px) scale(1.1) rotate(1deg) translateY(-3px); } }
+@media (max-width: 600px) { .station-card.active { transform: translateX(3px) scale(1.07); } }
 .queue-heading { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
 .queue-heading h2 { margin-bottom: 20px; }
 .add-link-button, .modal-add { border: 1px solid rgba(255,255,255,.28); border-radius: 999px; padding: 8px 12px; color: white; background: rgba(255,255,255,.12); cursor: pointer; backdrop-filter: blur(10px); }
