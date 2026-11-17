@@ -66,6 +66,14 @@
 .station-card.favorite-card .station-icon { width: 30px; height: 30px; font-size: 24px; line-height: 30px; text-align: center; }
 .station-card.favorite-card:hover .station-icon, .station-card.favorite-card:focus-visible .station-icon { left: 14px !important; top: 14px !important; transform: none !important; }
 .station-card:hover, .station-card:focus-visible { background-color: rgba(55, 34, 68, .66); }
+.station-card.active { z-index: 3; transform: translateX(4px) scale(1.06); border-color: rgba(255, 220, 248, .72); box-shadow: 0 0 0 2px rgba(241, 168, 220, .2), 0 18px 34px rgba(12, 5, 25, .52), inset 0 1px 0 rgba(255,255,255,.3); filter: saturate(1.12) brightness(1.08); }
+.station-card.active::after { content: ''; position: absolute; inset: 5px; border: 1px solid rgba(255,255,255,.16); border-radius: 15px; pointer-events: none; }
+.master-volume { width: 164px; padding: 6px 10px; gap: 8px; border-color: rgba(255,255,255,.3); background: linear-gradient(135deg, rgba(255,255,255,.16), rgba(255,255,255,.05)); box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 6px 18px rgba(8,4,18,.24); }
+.master-volume mat-icon { color: #f5d4ed; }
+.master-volume input { appearance: none; height: 5px; border-radius: 999px; outline: none; background: linear-gradient(90deg, #e2a1d1 0%, #e2a1d1 var(--volume, 100%), rgba(255,255,255,.2) var(--volume, 100%), rgba(255,255,255,.2) 100%); }
+.master-volume input::-webkit-slider-thumb { appearance: none; width: 14px; height: 14px; border: 2px solid rgba(255,255,255,.8); border-radius: 50%; background: #d88bc4; box-shadow: 0 0 0 3px rgba(216,139,196,.18), 0 2px 8px rgba(0,0,0,.3); }
+.master-volume input::-moz-range-thumb { width: 12px; height: 12px; border: 2px solid rgba(255,255,255,.8); border-radius: 50%; background: #d88bc4; box-shadow: 0 0 0 3px rgba(216,139,196,.18), 0 2px 8px rgba(0,0,0,.3); }
+@media (max-width: 600px) { .station-card.active { transform: translateX(3px) scale(1.04); } .master-volume { width: 148px; } }
 .queue-heading { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
 .queue-heading h2 { margin-bottom: 20px; }
 .add-link-button, .modal-add { border: 1px solid rgba(255,255,255,.28); border-radius: 999px; padding: 8px 12px; color: white; background: rgba(255,255,255,.12); cursor: pointer; backdrop-filter: blur(10px); }

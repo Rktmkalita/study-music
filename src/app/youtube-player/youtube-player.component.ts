@@ -27,9 +27,11 @@ export class YoutubePlayerComponent implements AfterViewInit, OnChanges, OnDestr
   private apiReady = false;
   private failedVideoIds = new Set<string>();
   private soundUnlocked = false;
+  private offsetAppliedForIndex = -1;
 
   ngAfterViewInit(): void {
     this.currentIndex = this.startIndex;
+    this.offsetAppliedForIndex = -1;
     YoutubePlayerComponent.loadApi().then(() => {
       this.apiReady = true;
       this.createPlayer();
@@ -37,9 +39,10 @@ export class YoutubePlayerComponent implements AfterViewInit, OnChanges, OnDestr
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['videoIds'] && this.apiReady && this.player && this.videoIds.length) {
+    if ((changes['videoIds'] || changes['startSeconds']) && this.apiReady && this.player && this.videoIds.length) {
       this.failedVideoIds.clear();
       this.currentIndex = this.startIndex;
+      this.offsetAppliedForIndex = -1;
       this.loadCurrent();
     }
   }
@@ -84,6 +87,7 @@ export class YoutubePlayerComponent implements AfterViewInit, OnChanges, OnDestr
   selectTrack(index: number): void {
     if (!this.player || !this.videoIds.length) return;
     this.currentIndex = Math.max(0, Math.min(index, this.videoIds.length - 1));
+    this.offsetAppliedForIndex = -1;
     this.trackChange.emit(this.currentIndex);
     this.failedVideoIds.clear();
     this.loadCurrent();
@@ -100,17 +104,24 @@ export class YoutubePlayerComponent implements AfterViewInit, OnChanges, OnDestr
       events: { onStateChange: (event: any) => {
         this.isPlaying = event.data === youtube.PlayerState.PLAYING;
         this.playingChange.emit(this.isPlaying);
-        if (event.data === youtube.PlayerState.PLAYING) this.disableCaptions(event.target);
+        if (event.data === youtube.PlayerState.PLAYING) { this.disableCaptions(event.target); this.applyStartOffset(event.target); }
         if (event.data === youtube.PlayerState.ENDED) this.next();
-      }, onReady: (event: any) => { this.disableCaptions(event.target); if (!this.userInitiated) event.target.mute(); else event.target.unMute(); event.target.playVideo(); }, onError: (event: any) => this.handlePlayerError(event.data) },
+      }, onReady: (event: any) => { this.disableCaptions(event.target); this.applyStartOffset(event.target); if (!this.userInitiated) event.target.mute(); else event.target.unMute(); event.target.playVideo(); }, onError: (event: any) => this.handlePlayerError(event.data) },
     });
   }
 
-  private loadCurrent(): void {
+  private loadCurrent(startSeconds = this.startSeconds): void {
     this.statusMessage = '';
     this.disableCaptions(this.player);
     this.trackChange.emit(this.currentIndex);
-    this.player.loadVideoById({ videoId: this.videoIds[this.currentIndex], startSeconds: this.startSeconds });
+    this.player.loadVideoById({ videoId: this.videoIds[this.currentIndex], startSeconds });
+  }
+
+  private applyStartOffset(player: any, startSeconds = this.startSeconds): void {
+    if (startSeconds > 0 && this.offsetAppliedForIndex !== this.currentIndex && player && typeof player.seekTo === 'function') {
+      player.seekTo(startSeconds, true);
+      this.offsetAppliedForIndex = this.currentIndex;
+    }
   }
 
   private disableCaptions(player: any): void {
