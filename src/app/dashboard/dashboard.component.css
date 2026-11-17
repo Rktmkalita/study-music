@@ -17,7 +17,7 @@
 .top-mask { top: 0; height: 92px; background: #120d1b; }
 .bottom-mask { bottom: 0; height: 92px; background: #120d1b; }
 .welcome-row, .queue-panel { pointer-events: auto; }
-.queue-panel { position: fixed; top: clamp(190px, 22vh, 250px); right: clamp(12px, 4vw, 56px); width: min(320px, 27vw); max-height: calc(100vh - 210px); overflow: auto; background: rgba(25, 16, 38, .72); }
+.queue-panel { position: fixed; top: clamp(190px, 22vh, 250px); right: clamp(12px, 4vw, 56px); z-index: 55; width: min(320px, 27vw); max-height: calc(100vh - 210px); overflow: auto; background: rgba(25, 16, 38, .72); }
 .station-grid { position: fixed; left: 0; top: 50%; z-index: 50; width: 220px; transform: translateY(-50%); pointer-events: auto; }
 .station-card, .station-card.active { width: 64px; height: 58px; padding: 10px; justify-content: center; transform: translateX(0); opacity: .9; pointer-events: auto; }
 .station-card { margin-left: 0; transition: transform .25s, opacity .25s; }
