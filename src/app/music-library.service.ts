@@ -16,6 +16,11 @@ export class MusicLibraryService {
     localStorage.setItem(this.key, JSON.stringify(tracks));
   }
 
+  updateTrack(id: string, changes: Partial<SavedTrack>): void {
+    const tracks = this.getTracks().map(track => track.id === id ? { ...track, ...changes } : track);
+    localStorage.setItem(this.key, JSON.stringify(tracks));
+  }
+
   removeTrack(id: string): void {
     localStorage.setItem(this.key, JSON.stringify(this.getTracks().filter(item => item.id !== id)));
   }

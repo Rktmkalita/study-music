@@ -15,6 +15,7 @@ export class YoutubePlayerComponent implements AfterViewInit, OnChanges, OnDestr
   @Input() trackTitles: string[] = [];
   @Input() backgroundMode = false;
   @Input() startIndex = 0;
+  @Input() startSeconds = 10;
   @Input() userInitiated = false;
   currentIndex = 0;
   statusMessage = '';
@@ -91,7 +92,7 @@ export class YoutubePlayerComponent implements AfterViewInit, OnChanges, OnDestr
     const youtube = (window as any).YT;
     this.player = new youtube.Player(this.playerElementId, {
       width: this.backgroundMode ? window.innerWidth : '100%', height: this.backgroundMode ? window.innerHeight : '390', videoId: this.videoIds[this.currentIndex],
-      playerVars: { playsinline: 1, rel: 0, autoplay: 1, start: 20, controls: this.backgroundMode ? 0 : 1, cc_load_policy: 0, iv_load_policy: 3 },
+      playerVars: { playsinline: 1, rel: 0, autoplay: 1, start: this.startSeconds, controls: this.backgroundMode ? 0 : 1, cc_load_policy: 0, iv_load_policy: 3 },
       events: { onStateChange: (event: any) => {
         this.isPlaying = event.data === youtube.PlayerState.PLAYING;
         this.playingChange.emit(this.isPlaying);
@@ -104,7 +105,7 @@ export class YoutubePlayerComponent implements AfterViewInit, OnChanges, OnDestr
   private loadCurrent(): void {
     this.statusMessage = '';
     this.disableCaptions(this.player);
-    this.player.loadVideoById({ videoId: this.videoIds[this.currentIndex], startSeconds: 20 });
+    this.player.loadVideoById({ videoId: this.videoIds[this.currentIndex], startSeconds: this.startSeconds });
   }
 
   private disableCaptions(player: any): void {
